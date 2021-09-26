@@ -12,7 +12,9 @@ ___________________
 <h4>Description</h4>
 
 The project aims to reproduce a simple endless running game with the main character, controlled by the player, that needs to move and jump the obstacles present in each level of the game, in order to maximize the number of points obtained during the match. 
-
+<p>
+A demo is available [HERE](https://sapienzainteractivegraphicscourse.github.io/final-project-gotu_team/).
+</p>
 <p>Submitted by: </p>
 <p>Lorenzo Zuccari </p>
 <p>1611757 </p>
