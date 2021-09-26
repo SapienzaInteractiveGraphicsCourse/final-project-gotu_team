@@ -234,11 +234,11 @@ var block_material = new THREE.MeshStandardMaterial( {
 // ** Loaders **
 
 const gltfLoader = new THREE.GLTFLoader();
-const tree0_url = '../assets/scene/models/Tree0.glb';
-const tree1_url = '../assets/scene/models/Tree1.glb';
-const tree2_url = '../assets/scene/models/Tree2.glb';
-const tree3_url = '../assets/scene/models/Tree3.glb';
-const tree4_url = '../assets/scene/models/Tree4.glb';
+const tree0_url = '../assets/scene/models/tree0.glb';
+const tree1_url = '../assets/scene/models/tree1.glb';
+const tree2_url = '../assets/scene/models/tree2.glb';
+const tree3_url = '../assets/scene/models/tree3.glb';
+const tree4_url = '../assets/scene/models/tree4.glb';
 
 var glb_LoadModel = function (obj, _ulr){   
     gltfLoader.load(_ulr, (glb) => {
