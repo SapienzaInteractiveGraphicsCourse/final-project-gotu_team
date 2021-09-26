@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Guardians of the Universe</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="shortcut icon" type="image/png" href="../assets/Menu/sword_logo.png">
+</head>
+
+
+<style type="text/css">
+	
+	.background{
+		height: 150vh;
+		width: 100%;
+		background-image: url(../assets/Menu/level3b.jpg);
+		background-repeat: no-repeat;
+		background-color: rgb(0,0,0);
+		background-size: cover;
+		background-position: left;
+		position: relative;
+		display: block;
+	}
+
+</style>
+
+
+<body>
+
+  <div class="background">
+	  <div class="row">	
+	  <div class="column">    <!-- LEFT column -->
+		<div class="menubar">
+			<ul id="buttons">
+				<li><a href="#" id="quit_B" >QUIT to MENU</a></li>
+				<li><a href="#" id="pause_B">PAUSE </a></li>
+
+				<li><a href="#" id="levels_B">LEVELS </a></li>
+			    <ul class='submenu_level' id="submenu_level">
+		          <li><a href="#" id="subLevel1"> Level I  </a></li>
+		          <li><a href="#" id="subLevel2"> Level II </a></li>
+		          <li><a href="#" id="subLevel3"> Level III</a></li>
+		        </ul>
+
+				<li><a href="#" id="options_B">MUSIC</a></li>
+				<ul class='submenu_options' id="submenu_opt">
+		          <li><a href="#" id="music1"> Music #1 </a></li>
+		          <li><a href="#" id="music2"> Music #2 </a></li>
+		          <li><a href="#" id="music3"> Music #3 </a></li>
+		          <li><a href="#" id="musicH"> Hero Music </a></li>
+		        </ul>
+			</ul><p></p>
+			<label id="level_label"> LEVEL 3 </label><p></p>
+			<img src="../assets/Menu/play.png" class="mute" id="vol_icon"><p></p>
+			<img src="../assets/Menu/logo.png" class="title"><p></p>
+		</div>
+
+	  </div>
+
+	  <div class="column">    <!-- RIGHT column -->
+		<p> <label id="game_info" style="color: rgb(255, 200, 200); font-size: 25px;">
+			LIVES : <span id="lives"  style="color: rgb(240, 240, 240);font-size: 30px;"> 0 </span> &emsp;
+		   POINTS : <span id="points" style="color: rgb(240, 240, 240);font-size: 30px;"> 0 </span> &emsp;
+		   RECORD : <span id="record" style="color: rgb(240, 240, 240);font-size: 30px;"> 0 </span> &emsp;
+	   </label> </p>
+		<p><canvas id="gl_canvas">
+		Oops ... your browser doesn't support the HTML5 canvas element
+		</canvas></p>
+		<img id="starting" style= "display: block; position: absolute; left: 25%; top: 5%; width: 450px;" 
+			class = "imgzone" src="../assets/Menu/startMessage.png">
+		<img id="paused" style= "display: none; position: absolute; left: 25%; top: 5%; width: 450px;" 
+			class = "imgzone" src="../assets/Menu/paused.png">
+		<img id="game_over" style= "display: none; position: absolute; left: 25%; top: 10%; width: 450px;" 
+			class = "imgzone" src="../assets/Menu/game_over.png">
+		</div>
+		</div>
+	  </div>
+	</div>
+
+	<audio id="play_song" loop="" volume = 0.10;>
+		<source src="../assets/Audio/CyberPunk.mp3" type="audio/mp3">
+		<!-- <source src="../assets/Audio/Underworld.mp3" type="audio/mp3"> -->
+		<!-- <source src="../assets/Audio/Mind_games.mp3" type="audio/mp3"> -->
+		<!-- <source src="../assets/Audio/song_hero.mp3" type="audio/mp3"> -->
+	</audio>
+
+	<audio id="play_sound" volume = 0.10; >
+		<source src="../assets/Audio/Default.wav" type="audio/mp3">
+	</audio>
+	
+  <script type="text/javascript">
+	    // musicControl
+			  function music_control(id){
+			  var play_song = document.getElementById("play_song");
+	  		  play_song.volume = 0.15;
+				if (play_song.paused){
+					play_song.play();
+					document.getElementById(id).src="../assets/Menu/mute.png";
+				} else{
+					play_song.pause();
+					document.getElementById(id).src="../assets/Menu/play.png";
+				}
+			  }
+
+			  document.getElementById("vol_icon").onclick = function(){music_control("vol_icon");}
+
+			  document.getElementById("musicH").onclick  = function (){
+				document.getElementById("play_song").src="../assets/Audio/song_hero.mp3";
+				document.getElementById("play_song").play();
+			  };
+			  document.getElementById("music1").onclick  = function (){
+				document.getElementById("play_song").src="../assets/Audio/Underworld.mp3";
+				document.getElementById("play_song").play();
+			  };
+			  document.getElementById("music2").onclick  = function (){
+				document.getElementById("play_song").src="../assets/Audio/Mind_games.mp3";
+				document.getElementById("play_song").play();
+			  };
+			  document.getElementById("music3").onclick  = function (){
+				document.getElementById("play_song").src="../assets/Audio/CyberPunk.mp3";
+				document.getElementById("play_song").play();
+			  };
+ 
+	    // menu buttons
+			  function load_page(link){
+				window.location.replace(link);
+			  }
+
+			  function display_sub(id){ // 
+				var subOBJ = document.getElementById(id);
+				if (subOBJ.style.display=='block')
+					subOBJ.style.display='none';
+				else subOBJ.style.display='block';
+			  }
+
+			  document.getElementById("options_B").onclick = function (){
+				document.getElementById("submenu_level").style.display='none';
+				display_sub("submenu_opt");
+			  };
+			  document.getElementById("levels_B").onclick  = function (){
+				document.getElementById("submenu_opt").style.display='none';
+				display_sub("submenu_level");
+			  };
+			  document.getElementById("subLevel1").onclick  = function (){
+				load_page("level1.html");
+			  };
+			  document.getElementById("subLevel2").onclick  = function (){
+				load_page("level2.html");
+			  };
+			  document.getElementById("subLevel3").onclick  = function (){
+				load_page("level3.html");
+			  };
+
+			// QUIT
+		  	document.getElementById("quit_B").onclick  = function (){
+				load_page("../GOTU.html");
+		  	};
+	</script>
+
+<script type="text/javascript" 
+	src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
+<script type="text/javascript" 
+	src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+<script type="text/javascript" 
+	src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/FBXLoader.js"></script>  
+
+  <!--
+  <script type="module" src="../assets/Utils/GLTFLoader.js"></script>
+  <script type="module" src="../assets/Utils/FBXLoader.js"></script>  
+  -->
+
+  <!-- <script src="../assets/Utils/initShaders.js"></script> -->
+  <!-- <script src="../assets/Utils/MVnew.js"></script> -->
+  
+  <script type="text/javascript" src="level3.js"></script>
+  <script type="text/javascript" src="test3.js"></script>
+  
+
+</body>
+
+</html>
